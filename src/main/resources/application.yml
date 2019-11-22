@@ -1,6 +1,3 @@
-## PostgreSQL
-spring.datasource.url=jdbc:postgresql://ec2-174-129-253-63.compute-1.amazonaws.com:5432/d3dk226p2ss68p?user=tpxskkhfmfokky&password=809a303649260019eac5028b20c3c6e98fcdb8e4d5dea1077e65885922ac0141&sslmode=require
-spring.datasource.username=tpxskkhfmfokky
-spring.datasource.password=809a303649260019eac5028b20c3c6e98fcdb8e4d5dea1077e65885922ac0141
-
-spring.jpa.show-sql=true
+spring:
+  datasource:
+    url: ${JDBC_DATABASE_URL}

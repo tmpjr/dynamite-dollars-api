@@ -1,18 +1,24 @@
 package com.dynamitedollars.api;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.atomic.AtomicLong;
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
 public class ExpenseController {
-   private static final String template = "Hello, %s";
-   private final AtomicLong counter = new AtomicLong();
+    @Autowired
+    private ExpenseRepository expenseRepository;
 
-   @RequestMapping("/expense")
-   public Expense expense(@RequestParam(value = "name", defaultValue = "World") String name) {
-      return new Expense(counter.incrementAndGet(), String.format(template, name));
-   }
+    @GetMapping("/expenses")
+    public List<Expense> getAllExpenses() {
+        return expenseRepository.findAll();
+    }
+
+    @PostMapping("/expenses")
+    public Expense createExpense(@Valid @RequestBody Expense expense) {
+        return expenseRepository.save(expense);
+    }
 }
