@@ -1,4 +1,4 @@
-package api;
+package com.dynamitedollars.api;
 
 public class Expense {
     private final long id;
